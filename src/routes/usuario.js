@@ -2,6 +2,24 @@ const express = require("express");
 const Cliente = require("../models/clientes"); // Importa o modelo Client
 const router = express.Router();
 
+/**
+ * @swagger
+ * /clientes:
+ *   get:
+ *     summary: Lista todos os clientes
+ *     tags: [Clientes]
+ *     responses:
+ *       200:
+ *         description: Lista de clientes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Cliente'
+ *       500:
+ *         description: Erro ao listar os clientes
+ */
 // Listar todos os clientes
 router.get("/", async (_, res) => {
   try {
@@ -17,6 +35,31 @@ router.get("/", async (_, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /clientes/{id}:
+ *   get:
+ *     summary: Retorna um cliente pelo ID
+ *     tags: [Clientes]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID do cliente
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Cliente encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Cliente'
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro ao buscar o cliente
+ */
 // Mostrar um cliente específico
 router.get("/:id", async (req, res) => {
   try {
@@ -30,6 +73,38 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /clientes/cadastrar:
+ *   post:
+ *     summary: Cria um novo cliente
+ *     tags: [Clientes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nome
+ *               - telefone
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 example: João da Silva
+ *               telefone:
+ *                 type: string
+ *                 example: "11999999999"
+ *     responses:
+ *       201:
+ *         description: Cliente criado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Cliente'
+ *       400:
+ *         description: Erro ao criar o cliente
+ */
 // Criar um novo cliente
 router.post("/cadastrar", async (req, res) => {
   try {
@@ -46,6 +121,44 @@ router.post("/cadastrar", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /clientes/{id}:
+ *   put:
+ *     summary: Atualiza um cliente existente
+ *     tags: [Clientes]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID do cliente
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 example: Maria Oliveira
+ *               telefone:
+ *                 type: string
+ *                 example: "11988887777"
+ *     responses:
+ *       200:
+ *         description: Cliente atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Cliente'
+ *       400:
+ *         description: Erro ao atualizar o cliente
+ *       404:
+ *         description: Cliente não encontrado
+ */
 // Atualizar um cliente existente
 router.put("/:id", async (req, res) => {
   try {
@@ -66,6 +179,35 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /clientes/{id}:
+ *   delete:
+ *     summary: Deleta um cliente
+ *     tags: [Clientes]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID do cliente
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Cliente deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Cliente deletado com sucesso!
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro ao deletar o cliente
+ */
 // Deletar um cliente
 router.delete("/:id", async (req, res) => {
   try {
