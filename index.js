@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerOptions = require("./swagger"); // Importe suas opções
+const PORT = process.env.PORT || 3000;
 
 // Corrigido: passar o objeto swaggerOptions, e não uma string
 const specs = swaggerJsdoc(swaggerOptions);
@@ -29,8 +30,8 @@ app.use("/orders", orders);
 app.use(routes);
 
 
-app.listen(3000, "localhost", () => {
-  console.log("servidor rodando na porta 3000!"); // mensagem de confirmação
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${PORT}`); // mensagem de confirmação
   console.log("Documentação Swagger disponível em http://localhost:3000/api-docs");
 });
 
