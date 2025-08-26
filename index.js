@@ -11,11 +11,15 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerOptions = require("./swagger"); // Importe suas opções
 const PORT = process.env.PORT || 3000;
+const path = require("path");
+
 
 // Corrigido: passar o objeto swaggerOptions, e não uma string
 const specs = swaggerJsdoc(swaggerOptions);
 
 connectToDatabase();
+
+app.use(express.static(path.join(__dirname, "src", "frontend")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

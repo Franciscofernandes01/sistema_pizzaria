@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizzaria - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container" id="login-container">
+  <h1>Pizzaria</h1>
+  <form id="login-form">
+    <input type="text" id="telefone" placeholder="Telefone" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <button id="show-cadastro">Cadastrar</button>
+  <div id="login-msg"></div>
+</div>
+
+<div class="container hidden" id="cadastro-container">
+  <h1>Cadastro</h1>
+  <form id="cadastro-form">
+    <input type="text" id="cadastro-nome" placeholder="Nome" required>
+    <input type="text" id="cadastro-telefone" placeholder="Telefone" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <button id="show-login">Já tenho conta</button>
+  <div id="cadastro-msg"></div>
+</div>
+
+<div class="container hidden" id="clientes-container">
+  <button class="logout" onclick="logout()">Sair</button>
+  <h1>Clientes</h1>
+  <ul id="clientes-list"></ul>
+  <div id="clientes-msg"></div>
+  <hr>
+  <h1>Pizzas</h1>
+  <ul id="pizzas-list"></ul>
+  <div id="pizzas-msg"></div>
+  <form id="pizza-form">
+    <input type="text" id="pizza-nome" placeholder="Nome da Pizza" required>
+    <input type="number" id="pizza-preco" placeholder="Preço" min="0" step="0.01" required>
+    <button type="submit">Cadastrar Pizza</button>
+  </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

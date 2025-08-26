@@ -106,7 +106,7 @@ router.get("/:id", async (req, res) => {
  *         description: Erro ao criar o cliente
  */
 // Criar um novo cliente
-router.post("/cadastrar", async (req, res) => {
+router.post("/usuario/cadastrar", async (req, res) => {
   try {
     const { nome, telefone } = req.body;
 

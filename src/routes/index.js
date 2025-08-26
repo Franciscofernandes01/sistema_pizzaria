@@ -2,12 +2,13 @@ const express = require("express");
 const Cliente = require("../models/clientes");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const pizzas = require("./pizzas");
 
 router.get("/", (_, res) => {
   res.json({ message: "Bem vindo a pizzaria" });
 });
 
-
+app.use("/pizzas", pizzas);
 /**
  * @swagger
  * /login:

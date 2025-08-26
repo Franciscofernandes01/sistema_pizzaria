@@ -23,7 +23,7 @@ const { autenticarJWT } = require("../middleware/auth");
  *       500:
  *         description: Erro ao listar as pizzas
  */
-router.get("/",autenticarJWT, async (_, res) => {
+router.get("/pizzas",autenticarJWT, async (_, res) => {
   try {
     const pizzas = await Pizzas.find();
 
@@ -110,11 +110,11 @@ router.get("/:id",autenticarJWT, async (req, res) => {
  *       400:
  *         description: Erro ao criar a pizza
  */
-router.post("/",autenticarJWT, async (req, res) => {
+router.post("/pizzas",autenticarJWT, async (req, res) => {
   try {
     const { nome, preco } = req.body;
 
-    const newPizza = new Pizzas({ name, price });
+    const newPizza = new Pizzas({ nome, preco });
 
     await newPizza.save();
 
@@ -225,5 +225,6 @@ router.delete("/:id",autenticarJWT, async (req, res) => {
     res.status(500).json({ error: "Erro ao deletar o pizza" });
   }
 });
+
 
 module.exports = pizzas = router;
